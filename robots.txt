@@ -1,0 +1,19 @@
+User-agent: ChatGPT
+Disallow: /
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: BingAI
+Disallow: /
+
+User-agent: gpt-3
+Disallow: /
+
+User-agent: openai
+Disallow: /
+
+User-agent: *
+Disallow: 
+
+Sitemap: https://spearmint.sh/sitemap.xml
