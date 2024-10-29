@@ -18,19 +18,31 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Retrieve metrics
-$sql = "SELECT * FROM metrics ORDER BY collected_at DESC";
+// Retrieve metrics (only the required fields)
+$sql = "SELECT id, os_type, hostname, cpu_type, total_ram, ip_address, collected_at FROM metrics ORDER BY collected_at DESC";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    echo "<table border='1'><tr><th>ID</th><th>OS Info</th><th>CPU Info</th><th>Memory Info</th><th>Disk Info</th><th>Uptime</th><th>Network Info</th><th>Collected At</th></tr>";
+    // Display table headers for selected columns
+    echo "<table border='1'><tr><th>ID</th><th>Hostname</th><th>IP Address</th><th>OS Type</th><th>CPU Type</th><th>Total RAM</th><th>Collected At</th></tr>";
+    
+    // Display each row with the selected metrics
     while($row = $result->fetch_assoc()) {
-        echo "<tr><td>".$row["id"]."</td><td>".$row["os_info"]."</td><td>".$row["cpu_info"]."</td><td>".$row["mem_info"]."</td><td>".$row["disk_info"]."</td><td>".$row["uptime_info"]."</td><td>".$row["network_info"]."</td><td>".$row["collected_at"]."</td></tr>";
+        echo "<tr>
+                <td>{$row['id']}</td>
+                <td>{$row['hostname']}</td>
+                <td>{$row['ip_address']}</td>
+                <td>{$row['os_type']}</td>
+                <td>{$row['cpu_type']}</td>
+                <td>{$row['total_ram']}</td>
+                <td>{$row['collected_at']}</td>
+              </tr>";
     }
     echo "</table>";
 } else {
     echo "No metrics available";
 }
+
 
 $conn->close();
 ?>
