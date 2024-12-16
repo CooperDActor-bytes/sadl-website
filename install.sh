@@ -4,7 +4,7 @@
 set -e
 
 REPO_URL="https://github.com/CooperDActor-bytes/sadl"
-VERSION="v1.0.1"
+VERSION="v1.0.2"
 TAR_FILE="sadl-${VERSION}.tar.gz"
 DOWNLOAD_URL="${REPO_URL}/archive/refs/tags/${VERSION}.tar.gz"
 INSTALL_DIR="/usr/local/bin"
